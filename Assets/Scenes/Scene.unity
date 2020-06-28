@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2222,7 +2222,6 @@ MonoBehaviour:
   - {fileID: 1283917737}
   - {fileID: 1919148562}
   - {fileID: 918856573}
-  - {fileID: 392549015}
 --- !u!4 &146394875
 Transform:
   m_ObjectHideFlags: 0
@@ -9908,10 +9907,10 @@ MonoBehaviour:
     MaxY: 100
   - ressourceName: MinWood
     objectToGenerate: {fileID: 1250234054}
-    MinX: 10
-    MaxX: 20
-    MinY: 10
-    MaxY: 20
+    MinX: 5
+    MaxX: 10
+    MinY: 5
+    MaxY: 10
   - ressourceName: MinRock
     objectToGenerate: {fileID: 2099162937}
     MinX: 9
