@@ -3,6 +3,9 @@
 public class Build_System : MonoBehaviour
 {
     public int preview;
+    public int currentX;
+    public int CurrentY;
+
     public bool haveItAHmmer;
     public bool isBuilding;
 
@@ -14,6 +17,7 @@ public class Build_System : MonoBehaviour
     Inventory inventory;
     AlertManager alert;
     UiBuildSystem uiBuild;
+    PlayerMovement playerMovement;
 
     public Vector2 mousePos;
     public float mouseWheel;
@@ -21,14 +25,23 @@ public class Build_System : MonoBehaviour
 
     public void Start()
     {
+        currentX = 1;
+        CurrentY = 1;
         buildInterface.SetActive(false);
         preview = 0;
         haveItAHmmer = true;
         isBuilding = false;
+
+        for(int index = 0; index < ressource.Length; index++)
+        {
+            allPreview[index] = ressource[index].preview;
+        }
+
         for(int i = 0; i < allPreview.Length; i++)
         {
             allPreview[i].SetActive(false);
         }
+        playerMovement = FindObjectOfType<PlayerMovement>().GetComponent<PlayerMovement>();
         uiBuild = FindObjectOfType<UiBuildSystem>().GetComponent<UiBuildSystem>();
         inventory = FindObjectOfType<Inventory>().GetComponent<Inventory>();
         alert = FindObjectOfType<AlertManager>().GetComponent<AlertManager>();
@@ -38,7 +51,7 @@ public class Build_System : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            if (isBuilding)
+            if (isBuilding == true)
             {
                 uiBuild.allCate[0].SetActive(false);
                 buildInterface.SetActive(false);
@@ -46,6 +59,7 @@ public class Build_System : MonoBehaviour
                 isBuilding = false;
             }else if(!isBuilding && haveItAHmmer == true)
             {
+                DesactiveAllRessource();
                 uiBuild.allCate[0].SetActive(true);
                 buildInterface.SetActive(true);
             }
@@ -61,7 +75,7 @@ public class Build_System : MonoBehaviour
                 if(Inventory.ressource[0] >= ressource[preview]._ressource[0] && Inventory.ressource[1] >= ressource[preview]._ressource[1] && Inventory.ressource[2] >= ressource[preview]._ressource[2] && Inventory.ressource[3] >= ressource[preview]._ressource[3] && Inventory.ressource[4] >= ressource[preview]._ressource[4] && Inventory.ressource[5] >= ressource[preview]._ressource[5] && Inventory.ressource[6] >= ressource[preview]._ressource[6] && Inventory.ressource[7] >= ressource[preview]._ressource[7] && Inventory.ressource[8] >= ressource[preview]._ressource[8] && Inventory.ressource[9] >= ressource[preview]._ressource[9] && Inventory.ressource[10] >= ressource[preview]._ressource[10] && Inventory.ressource[11] >= ressource[preview]._ressource[11] && Inventory.ressource[12] >= ressource[preview]._ressource[12] && Inventory.ressource[13] >= ressource[preview]._ressource[13] && Inventory.ressource[14] >= ressource[preview]._ressource[14])
                 {
                     GameObject _ressource = Instantiate(ressource[preview].after);
-                    _ressource.transform.position = new Vector2(Mathf.Round(mousePos.x), Mathf.Round(mousePos.y + 5));
+                    _ressource.transform.position = new Vector2(Mathf.Round(mousePos.x + currentX), Mathf.Round(mousePos.y + 5));
                     isBuilding = false;
                     DesactiveAllRessource();
                     for(int id = 0; id < Inventory.ressource.Length; id++)

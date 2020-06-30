@@ -57,6 +57,14 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
         ActiveTools();
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            SavePlayer();
+        }else if (Input.GetKeyDown(KeyCode.F2))
+        {
+            LoadPlayer();
+        }
     }
 
     void ActiveTools()
@@ -130,5 +138,21 @@ public class PlayerMovement : MonoBehaviour
         isSword = false;
         isSwordEquip = false;
         SwordCollider.SetActive(false);
+    }
+
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this, gameObject);
+    }
+
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        Vector3 _position;
+        _position.x = data.position[0];
+        _position.y = data.position[1];
+        _position.z = data.position[2];
+        gameObject.transform.position = _position;
     }
 }
