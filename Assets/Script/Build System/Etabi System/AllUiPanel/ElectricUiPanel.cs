@@ -12,11 +12,11 @@ public class ElectricUiPanel : MonoBehaviour
     
     public void CraftProcess()
     {
-        CraftObjects(8, 1, 0, 0, 0, 0, 0, 8, 7, 0, 0, 5, 0, 0, 0, 0, 2);
+        CraftObjects(8, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 1, 0, 2);
     }
     public void CraftPrintedCircuit()
     {
-        CraftObjects(11, 1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 7, 0, 0, 1, 0, 1);
+        CraftObjects(11, 1, 0, 0, 0, 0, 0, 0, 6, 0, 0, 5, 0, 0, 0, 0, 1);
     }
     public void CraftMinProcessor()
     {
@@ -32,7 +32,7 @@ public class ElectricUiPanel : MonoBehaviour
     }
     public void craftRam()
     {
-        CraftObjects(10, 1, 0, 0, 0, 0, 0, 2, 3, 0, 0, 9, 0, 0, 4, 0, 1);
+        CraftObjects(10, 1, 0, 0, 0, 0, 0, 2, 3, 0, 0, 1, 0, 0, 4, 0, 1);
     }
 
     void CraftObjects(int ressourceId, int amount, int nbBois, int nbPierre, int nbFood, int nbWater, int coal, int iron, int copper, int gold, int processor, int mini_processor, int ram, int printed_circuit, int calculating_unit, int socket, int green_card)

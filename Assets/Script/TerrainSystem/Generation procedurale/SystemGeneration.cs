@@ -35,9 +35,9 @@ public class SystemGeneration : MonoBehaviour
 
     void GenerateObjets(int id, GameObject parents, Transform _parents)
     {
-        for(int x = Random.Range(0, 6); x < width; x += Random.Range(Random.Range(_generationObjectManagements[id].MinX, _generationObjectManagements[id].MaxX), Random.Range(_generationObjectManagements[id].MinX, _generationObjectManagements[id].MaxX)))
+        for(int x = Random.Range(-100, -90); x < width; x += Random.Range(Random.Range(_generationObjectManagements[id].MinX, _generationObjectManagements[id].MaxX), Random.Range(_generationObjectManagements[id].MinX, _generationObjectManagements[id].MaxX)))
         {
-            for(int y = Random.Range(0, 5); y < height; y += Random.Range(Random.Range(_generationObjectManagements[id].MinY, _generationObjectManagements[id].MaxY), Random.Range(_generationObjectManagements[id].MinY, _generationObjectManagements[id].MaxY)))
+            for(int y = Random.Range(-100, -90); y < height; y += Random.Range(Random.Range(_generationObjectManagements[id].MinY, _generationObjectManagements[id].MaxY), Random.Range(_generationObjectManagements[id].MinY, _generationObjectManagements[id].MaxY)))
             {
                 GameObject generateObject = Instantiate(_generationObjectManagements[id].objectToGenerate);
                 generateObject.transform.position = new Vector2(x, y);

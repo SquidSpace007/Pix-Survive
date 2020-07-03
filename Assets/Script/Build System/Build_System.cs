@@ -1,112 +1,97 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Build_System : MonoBehaviour
 {
-    public int preview;
-    public int currentX;
-    public int CurrentY;
-
-    public bool haveItAHmmer;
     public bool isBuilding;
+    public bool haveItAHmmer;
+    public int preview;
 
-    public GameObject[] allPreview;
-    public GameObject buildInterface;
+    public List<GameObject> AllPreview = new List<GameObject>();
 
-    public Ressource[] ressource;
-
+    AlertManager alertManager;
     Inventory inventory;
-    AlertManager alert;
-    UiBuildSystem uiBuild;
-    PlayerMovement playerMovement;
 
-    public Vector2 mousePos;
-    public float mouseWheel;
-    public Camera mainCamera;
+    public allBuild[] _allBuilds;
 
-    public void Start()
+    Vector2 mousePos;
+    public Camera camera;
+
+    private void Start()
     {
-        currentX = 1;
-        CurrentY = 1;
-        buildInterface.SetActive(false);
-        preview = 0;
-        haveItAHmmer = true;
-        isBuilding = false;
-
-        for(int index = 0; index < ressource.Length; index++)
-        {
-            allPreview[index] = ressource[index].preview;
-        }
-
-        for(int i = 0; i < allPreview.Length; i++)
-        {
-            allPreview[i].SetActive(false);
-        }
-        playerMovement = FindObjectOfType<PlayerMovement>().GetComponent<PlayerMovement>();
-        uiBuild = FindObjectOfType<UiBuildSystem>().GetComponent<UiBuildSystem>();
+        alertManager = FindObjectOfType<AlertManager>().GetComponent<AlertManager>();
         inventory = FindObjectOfType<Inventory>().GetComponent<Inventory>();
-        alert = FindObjectOfType<AlertManager>().GetComponent<AlertManager>();
+        isBuilding = false;
+        haveItAHmmer = false;
+        preview = 0;
+
+        for(int id = 0; id < _allBuilds.Length; id++)
+        {
+            AllPreview.Add(_allBuilds[id].preview);
+            _allBuilds[id].preview.SetActive(false);
+        }
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            if (isBuilding == true)
+            if (isBuilding)
             {
-                uiBuild.allCate[0].SetActive(false);
-                buildInterface.SetActive(false);
-                DesactiveAllRessource();
                 isBuilding = false;
-            }else if(!isBuilding && haveItAHmmer == true)
+                DesactiveAllPreview();
+            }else if (!isBuilding)
             {
-                DesactiveAllRessource();
-                uiBuild.allCate[0].SetActive(true);
-                buildInterface.SetActive(true);
+                DesactiveAllPreview();
+                isBuilding = true;
             }
         }
 
         if (isBuilding)
         {
-            ressource[preview].preview.SetActive(true);
-            ressource[preview].preview.transform.position = new Vector2(Mathf.Round(mainCamera.ScreenToWorldPoint(Input.mousePosition).x), Mathf.Round(mainCamera.ScreenToWorldPoint(Input.mousePosition).y + 5));
+            mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
+            _allBuilds[preview].preview.SetActive(true);
+            _allBuilds[preview].preview.transform.position = new Vector2(Mathf.Round(mousePos.x), Mathf.Round(mousePos.y + 5));
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                if(Inventory.ressource[0] >= ressource[preview]._ressource[0] && Inventory.ressource[1] >= ressource[preview]._ressource[1] && Inventory.ressource[2] >= ressource[preview]._ressource[2] && Inventory.ressource[3] >= ressource[preview]._ressource[3] && Inventory.ressource[4] >= ressource[preview]._ressource[4] && Inventory.ressource[5] >= ressource[preview]._ressource[5] && Inventory.ressource[6] >= ressource[preview]._ressource[6] && Inventory.ressource[7] >= ressource[preview]._ressource[7] && Inventory.ressource[8] >= ressource[preview]._ressource[8] && Inventory.ressource[9] >= ressource[preview]._ressource[9] && Inventory.ressource[10] >= ressource[preview]._ressource[10] && Inventory.ressource[11] >= ressource[preview]._ressource[11] && Inventory.ressource[12] >= ressource[preview]._ressource[12] && Inventory.ressource[13] >= ressource[preview]._ressource[13] && Inventory.ressource[14] >= ressource[preview]._ressource[14])
+                if (Inventory.ressource[0] <= _allBuilds[preview].ressource[0] && Inventory.ressource[1] <= _allBuilds[preview].ressource[1] && Inventory.ressource[2] <= _allBuilds[preview].ressource[2])
                 {
-                    GameObject _ressource = Instantiate(ressource[preview].after);
-                    _ressource.transform.position = new Vector2(Mathf.Round(mousePos.x + currentX), Mathf.Round(mousePos.y + 5));
+                    GameObject _constrcut = Instantiate(_allBuilds[preview].after);
+                    _constrcut.transform.position = new Vector2(mousePos.x, mousePos.y + 5);
+                    DesactiveAllPreview();
                     isBuilding = false;
-                    DesactiveAllRessource();
-                    for(int id = 0; id < Inventory.ressource.Length; id++)
+                    for (int i = 0; i < Inventory.ressource.Length; i++)
                     {
-                        Inventory.ressource[id] -= ressource[preview]._ressource[id];
+                        Inventory.ressource[i] -= _allBuilds[preview].ressource[i];
                     }
                 }
                 else
                 {
-                    alert.TextAlert(3, "Erreur tu n'as pas les ressource");
-                    Debug.Log("Tu n'as pas les ressource");
+                    alertManager.TextAlert(4f, "Erreur tu n'as pas les ressources");
                 }
             }
         }
     }
 
-    void DesactiveAllRessource()
+    private void DesactiveAllPreview()
     {
-        foreach(var element in allPreview)
+        int length = AllPreview.Count;
+        for(int i = 0; i < length; i++)
         {
-            element.SetActive(false);
+            AllPreview[i].SetActive(false);
         }
     }
 
     [System.Serializable]
-    public struct Ressource
+    public struct allBuild
     {
         public string name;
-        public GameObject after;
-        public GameObject preview;
 
-        public int[] _ressource;
+        public GameObject preview;
+        public GameObject after;
+
+        public int[] ressource;
     }
+
 }

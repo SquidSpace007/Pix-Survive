@@ -6,7 +6,7 @@ using TMPro;
 public class AlertManager : MonoBehaviour
 {
     [Header("Alert By Text")]
-    public Text text;
+    public TextMeshProUGUI text;
 
     [Space]
 
@@ -18,7 +18,7 @@ public class AlertManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Started");
+        text.SetText("");
     }
 
     public void NotificationAlertManager(Image img, string Title, string Desc, int times)

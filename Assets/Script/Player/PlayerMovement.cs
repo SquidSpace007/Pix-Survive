@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    int playerId;
+
     public float moveSpeed;
 
     public Rigidbody2D rb;
@@ -15,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject canvas;
 
     private Inventory inventory;
+    private AlertManager alert;
 
     public bool isDigging;
     public bool isEquiped;
@@ -32,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        alert = FindObjectOfType<AlertManager>().GetComponent<AlertManager>();
         inventory = FindObjectOfType<Inventory>().GetComponent<Inventory>();
         haveItAAxe = false;
         haveItAPick = false;
@@ -53,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetBool("isSword", isSword);
         animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
         ActiveTools();
@@ -81,6 +85,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(Axe());
             }
+            else
+            {
+                alert.TextAlertManager(3f, "Tu n'as pas de hache");
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.V))
@@ -89,6 +97,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(Pick());
             }
+            else
+            {
+                alert.TextAlertManager(3f, "Tu n'as pas de pioche");
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.B))
@@ -96,6 +108,10 @@ public class PlayerMovement : MonoBehaviour
             if (isSwordEquip == false && canDesequip == false && isEquiped == false && isPickEquip == false && haveItASword == true)
             {
                 StartCoroutine(Sword());
+            }
+            else
+            {
+                alert.TextAlertManager(3f, "Tu n'as pas d'épée");
             }
         }
     }
