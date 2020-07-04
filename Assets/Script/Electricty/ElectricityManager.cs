@@ -1,73 +1,76 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
+﻿using System.Collections;
+using UnityEngine;
 
 public class ElectricityManager : MonoBehaviour
 {
-    public int MaxElectricity;
-    int minElectricity = 0;
-    public int currentElectricity;
+    public enum Type { cable, ElectricityGenerator};
+    public Type type;
 
-    public Text text;
-    public int MaxElectricityCanGenerate;
-    public int ElecricityCanGeneratePerSecond;
-    public float frequencyElectricityCanGeneratePerSecond;
+    public int MaxElectricity;
+    public int currentElectricity;
+    public int ElectricityCanGeneratePerSecond;
+    public float waitTimesBeforeCanGenerateElectricity;
+
+    public bool isItAElectricityGenerator;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.CompareTag("ElectricitySource"))
-        {
-            gameObject.SetActive(false);
-            gameObject.SetActive(true);
-        }
-        if(gameObject.CompareTag("Electricity Generator"))
-        {
-            AddElectricityManager();
-        }
         currentElectricity = 1;
+        if(type == Type.ElectricityGenerator)
+        {
+            ElectricityGeneratorManagement();
+            isItAElectricityGenerator = false;
+        }else if(type == Type.cable)
+        {
+            isItAElectricityGenerator = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.CompareTag("Electricity Generator"))
-        {
-            text.text = currentElectricity.ToString() + "/" + MaxElectricity.ToString();
-        }
-
         if(currentElectricity > MaxElectricity)
         {
             currentElectricity = MaxElectricity;
         }
+    }
 
-        if(currentElectricity < minElectricity)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Teste");
+        if(collision.GetComponent<ElectricityManager>().isItAElectricityGenerator == true)
         {
-            currentElectricity = minElectricity;
+            if(collision.GetComponent<ElectricityManager>().currentElectricity > 0)
+            {
+                currentElectricity++;
+                collision.GetComponent<ElectricityManager>().currentElectricity--;
+                StartCoroutine(CollectElectricity());
+            }
+            else if (collision.GetComponent<ElectricityManager>().currentElectricity < 0)
+            {
+                Debug.Log("No Electricity in " + collision.gameObject.name);
+                StartCoroutine(CollectElectricity());
+            }
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void ElectricityGeneratorManagement()
     {
-        print("Hello World");
-        if (collision.CompareTag("Electricity Source") || collision.CompareTag("Electricity Generator") && gameObject.CompareTag("Electricity Source") && collision.GetComponent<ElectricityManager>().currentElectricity > 0)
-        {
-            collision.GetComponent<ElectricityManager>().currentElectricity--;
-            currentElectricity++;
-            gameObject.SetActive(false);
-            gameObject.SetActive(true);        
-        }
+        StartCoroutine(GenerateElectricity());
     }
 
-    public void AddElectricityManager()
+    private IEnumerator CollectElectricity()
     {
-        StartCoroutine(AddElectricty(frequencyElectricityCanGeneratePerSecond, ElecricityCanGeneratePerSecond));
+        yield return new WaitForSeconds(0.1f);
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 
-    public IEnumerator AddElectricty(float frequency, int amount)
+    private IEnumerator GenerateElectricity()
     {
-        currentElectricity += amount;
-        yield return new WaitForSeconds(frequency);
-        AddElectricityManager();
+        yield return new WaitForSeconds(waitTimesBeforeCanGenerateElectricity);
+        currentElectricity += ElectricityCanGeneratePerSecond;
+        ElectricityGeneratorManagement();
     }
 }

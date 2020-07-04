@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\colop\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\colop\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_Pix-Survive.763875400.00" t="ExcludeRecursive" />
+    <e p="C:\Users\colop\OneDrive\Documents\Pix Survve\Pix-Survive" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="AlertManager.cs" t="Include" />
+        <e p="Script" t="Include">
+          <e p="Adding System" t="Include">
+            <e p="AddingSystem.cs" t="Include" />
+          </e>
+          <e p="Build System" t="Include">
+            <e p="Build_System.cs" t="Include" />
+            <e p="Etabi System" t="Include">
+              <e p="AllUiPanel" t="Include">
+                <e p="ElectricUiPanel.cs" t="Include" />
+                <e p="UiPanel.cs" t="Include" />
+              </e>
+              <e p="EtabliActive.cs" t="Include" />
+            </e>
+            <e p="UiBuildSystem.cs" t="Include" />
+          </e>
+          <e p="collectable" t="Include">
+            <e p="Collectable.cs" t="Include" />
+            <e p="CollectableObjects.cs" t="Include" />
+            <e p="Security.cs" t="Include" />
+            <e p="Tree" t="Include">
+              <e p="Transparancy.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Electricty" t="Include">
+            <e p="ElectricityManager.cs" t="Include" />
+          </e>
+          <e p="Ennemie" t="Include">
+            <e p="Patrol.cs" t="Include" />
+            <e p="TakeDamage.cs" t="Include" />
+          </e>
+          <e p="Fontaine" t="Include">
+            <e p="E_Active.cs" t="Include" />
+            <e p="GetWater.cs" t="Include" />
+          </e>
+          <e p="Inventory" t="Include">
+            <e p="OnMouse.cs" t="Include" />
+          </e>
+          <e p="Machine" t="Include">
+            <e p="Machine Graveuse de carte lv1" t="Include">
+              <e p="Activation.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Menu" t="Include">
+            <e p="ButtonManagement.cs" t="Include" />
+            <e p="Introduction.cs" t="Include" />
+            <e p="RunningAnimation.cs" t="Include" />
+          </e>
+          <e p="Player" t="Include">
+            <e p="CameraFollow.cs" t="Include" />
+            <e p="DontDestroyOnLoadScene.cs" t="Include" />
+            <e p="FoodBar.cs" t="Include" />
+            <e p="HealthBar.cs" t="Include" />
+            <e p="Inventory.cs" t="Include" />
+            <e p="InventoryManagement.cs" t="Include" />
+            <e p="levelLoader.cs" t="Include" />
+            <e p="PlayerFood.cs" t="Include" />
+            <e p="PlayerHealth.cs" t="Include" />
+            <e p="PlayerMovement.cs" t="Include" />
+            <e p="PlayerSpawn.cs" t="Include" />
+            <e p="PlayerWater.cs" t="Include" />
+            <e p="Tools" t="Include">
+              <e p="ToolsManagement.cs" t="Include" />
+            </e>
+            <e p="WaterBar.cs" t="Include" />
+          </e>
+          <e p="richpresents" t="Include">
+            <e p="Demo" t="Include">
+              <e p="Exemple.cs" t="Include" />
+            </e>
+            <e p="Discord-RPC" t="Include">
+              <e p="DiscordRpc.cs" t="Include" />
+              <e p="DiscordTime.cs" t="Include" />
+              <e p="PresenceManager.cs" t="Include" />
+            </e>
+            <e p="Editor" t="Include">
+              <e p="BuildHelper.cs" t="Include" />
+            </e>
+          </e>
+          <e p="SaveSystem" t="Include">
+            <e p="PlayerData.cs" t="Include" />
+            <e p="SaveSystem.cs" t="Include" />
+          </e>
+          <e p="TerrainSystem" t="Include">
+            <e p="DayNightSystem" t="Include">
+              <e p="DayAndNightCycle.cs" t="Include" />
+            </e>
+            <e p="Generation procedurale" t="Include">
+              <e p="SystemGeneration.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Teste.cs" t="Include" />
+        </e>
+        <e p="TextMesh Pro" t="Include">
+          <e p="Fonts" t="Include">
+            <e p="LiberationSans - OFL.txt" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="LineBreaking Following Characters.txt" t="Include" />
+            <e p="LineBreaking Leading Characters.txt" t="Include" />
+            <e p="Shaders" t="Include">
+              <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+              <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+              <e p="TMP_Bitmap.shader" t="Include" />
+              <e p="TMP_SDF Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface.shader" t="Include" />
+              <e p="TMP_SDF.shader" t="Include" />
+              <e p="TMP_Sprite.shader" t="Include" />
+              <e p="TMPro.cginc" t="Include" />
+              <e p="TMPro_Properties.cginc" t="Include" />
+              <e p="TMPro_Surface.cginc" t="Include" />
+            </e>
+          </e>
+          <e p="Sprites" t="Include">
+            <e p="EmojiOne Attribution.txt" t="Include" />
+          </e>
+        </e>
+        <e p="Tilemap" t="Include">
+          <e p="Annimal" t="Include">
+            <e p="Fox" t="Include">
+              <e p="CHANGES.txt" t="Include" />
+              <e p="LICENSE-CC-BY-SA-3.0.txt" t="Include" />
+              <e p="LICENSE-CC-BY-SA-4.0.txt" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Pix-Survive.sln" t="IncludeFlat" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
